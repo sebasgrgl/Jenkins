@@ -8,8 +8,8 @@ node{
   def imageTag = "gcr.io/${project}/${appName}:${imageVersion}.${env.BUILD_NUMBER}"
   
   //Checkout Code from Git
-  Stage('SCM checkout')    {
-  git "https://github.com/srikant314/Jenkins.git"
+  stage('SCM checkout')    {
+  git 'https://github.com/srikant314/Jenkins.git'
   }
   //Stage 1 : Build the docker image.
   stage('Build image') {
