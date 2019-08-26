@@ -8,18 +8,18 @@ node{
   def imageTag = "gcr.io/${project}/${appName}:${imageVersion}.${env.BUILD_NUMBER}"
   
   //Checkout Code from Git
-  stage('SCM checkout')    {
-  git 'https://github.com/srikant314/Jenkins.git'
-  }
+     checkout scm  
+
   //Stage 1 : Build the docker image.
   stage('Build image') {
-      sh("docker build -t ${imageTag} .")
+      def customImage = docker.build("my-image:${imageTag}"
+	  //sh("docker build -t ${imageTag} .")
   }
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
-      //sh("gcloud docker -- push ${imageTag}")
-	  def customImage = docker.build("my-image:${imageTag}"
+      sh("gcloud docker -- push ${imageTag}")
+	  
   }
   
   //Stage 3 : Deploy Application
