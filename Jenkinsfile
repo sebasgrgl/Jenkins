@@ -18,7 +18,8 @@ node{
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
-      sh("gcloud docker -- push ${imageTag}")
+      //sh("gcloud docker -- push ${imageTag}")
+	  customImage.push()
 	  
   }
   
