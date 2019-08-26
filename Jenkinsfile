@@ -18,7 +18,8 @@ node{
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
-      sh("gcloud docker -- push ${imageTag}")
+      //sh("gcloud docker -- push ${imageTag}")
+	  def customImage = docker.build("my-image:${imageTag}"
   }
   
   //Stage 3 : Deploy Application
