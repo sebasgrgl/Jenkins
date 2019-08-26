@@ -12,7 +12,7 @@ node{
 
   //Stage 1 : Build the docker image.
   stage('Build image') {
-      def customImage = docker.build("my-image:${imageTag}"
+      def customImage = docker.build("my-image:${imageTag}")
 	  //sh("docker build -t ${imageTag} .")
   }
   
