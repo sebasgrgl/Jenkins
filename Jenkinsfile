@@ -12,15 +12,15 @@ node{
 
   //Stage 1 : Build the docker image.
   stage('Build image') {
-      def customImage = docker.build("my-image:${imageTag}")
-	  //sh("docker build -t ${imageTag} .")
+      // def customImage = docker.build("my-image:${imageTag}")
+	  def dockerhome = tool 'Mydocker'
+	  sh("docker build -t ${imageTag} .")
   }
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
-      //sh("gcloud docker -- push ${imageTag}")
-	  customImage.push()
-	  
+      sh("gcloud docker -- push ${imageTag}")
+	  	  
   }
   
   //Stage 3 : Deploy Application
