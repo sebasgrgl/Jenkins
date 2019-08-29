@@ -3,8 +3,7 @@ FROM openjdk:8-jre-alpine
 #Check the java version
 RUN ["java", "-version"]
 #Install maven
-RUN apt-get update
-RUN apt-get install -y maven
+RUN apk add --update maven
 #Set the working directory for RUN and ADD commands
 WORKDIR /code
 #Copy the SRC, LIB and pom.xml to WORKDIR
