@@ -60,8 +60,6 @@
         <configuration>
           <source>1.7</source>
           <target>1.7</target>
-          <fork>true</fork>
-          <executable>/usr/lib/jvm/java-8-openjdk-amd64/bin/javac</executable>
           <compilerArgs>
             <arg>-Xlint</arg>
           </compilerArgs>
