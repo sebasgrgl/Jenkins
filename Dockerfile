@@ -4,13 +4,15 @@ FROM openjdk:8-jre-alpine
 RUN ["java", "-version"]
 #Install maven
 RUN apk add --update maven
-ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 #Set the working directory for RUN and ADD commands
 WORKDIR /code
 #Copy the SRC, LIB and pom.xml to WORKDIR
 ADD pom.xml /code/pom.xml
 #ADD lib /code/lib
 ADD src /code/src
+#Setting the Environment variable
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
+RUN export JAVA_HOME
 #Build the code
 RUN ["mvn", "clean"]
 RUN ["mvn", "install","-X"]
