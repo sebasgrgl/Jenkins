@@ -4,7 +4,7 @@ FROM openjdk:8-jre-alpine
 RUN ["java", "-version"]
 #Install maven
 RUN apk add --update maven
-RUN echo "JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")" | tee -a /etc/profile && source /etc/profile && echo $JAVA_HOME
+ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 #Set the working directory for RUN and ADD commands
 WORKDIR /code
 #Copy the SRC, LIB and pom.xml to WORKDIR
