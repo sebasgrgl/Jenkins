@@ -22,6 +22,7 @@ node{
   	  withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
       sh("${GCLOUD_PATH}/gcloud docker -- push ${imageTag}")
 	  }	 
+	}
   }
   
   //Stage 3 : Deploy Application
