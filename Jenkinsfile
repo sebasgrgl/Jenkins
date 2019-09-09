@@ -19,13 +19,14 @@ node{
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
-  	 // withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
+  	 withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
   	 //withCredentials([file(credentialsId: 'Gcloud', variable: 'Gcloud')]) {
   	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud',variable:'Gcloud']]) {
-    // some block
+      sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud}")
       sh("docker push ${imageTag}")
 	 //}	 
 	}
+   }
   }
   
   //Stage 3 : Deploy Application
