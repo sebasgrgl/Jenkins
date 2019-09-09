@@ -20,8 +20,8 @@ node{
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
   	  withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
-      sh('$GCLOUD_PATH/"gcloud docker -- push ${imageTag}"')
-	  }	  
+      sh('$GCLOUD_PATH/"gcloud docker --push ${imageTag}"')
+	  }	 
   }
   
   //Stage 3 : Deploy Application
