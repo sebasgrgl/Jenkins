@@ -1,6 +1,6 @@
 node{
 //Define all variables
-  def project = 'my-project'
+  def project = 'My Project 4188'
   def appName = 'my-first-microservice'
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
@@ -10,7 +10,7 @@ node{
   //Checkout Code from Git
      checkout scm  
 
-  //Stage 1 : Build the docker image.
+  //Stage 1 : Build the docker imagetag.
   stage('Build image') {
       // def customImage = docker.build("my-image:${imageTag}")
 	  def dockerhome = tool 'docker'
@@ -24,7 +24,7 @@ node{
   	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud',variable:'Gcloud']]) {
       sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud}")
       sh("${GCLOUD_PATH}/gcloud docker -- push ${imageTag}")
-	 //}	 
+	 //}	 	
 	}
    }
   }
