@@ -1,6 +1,6 @@
 node{
 //Define all variables
-  def project = 'enduring-trees-252506'
+  def project = 'eighth-service-250517'
   def appName = 'my-first-microservice'
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
@@ -21,8 +21,8 @@ node{
   stage('Push image to registry') {
   	 withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
   	 //withCredentials([file(credentialsId: 'Gcloud', variable: 'Gcloud')]) {
-  	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud1',variable:'Gcloud1']]) {
-      sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud1}")
+  	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud',variable:'Gcloud']]) {
+      sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud}")
      // sh("${GCLOUD_PATH}/gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io")
      //sh("${GCLOUD_PATH}/gcloud config set project my-project")
      // sh('docker-credential-gcr configure-docker')
