@@ -15,7 +15,7 @@ node{
       // def customImage = docker.build("my-image:${imageTag}")
 	  def dockerhome = tool 'docker'
 	  sh("docker build -t ${imageTag} .")
-  }
+  }	
   
   //Stage 2 : Push the image to docker registry
   stage('Push image to registry') {
@@ -26,7 +26,7 @@ node{
      // sh("${GCLOUD_PATH}/gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io")
      //sh("${GCLOUD_PATH}/gcloud config set project my-project")
      // sh('docker-credential-gcr configure-docker')
-      sh("docker push ${imageTag}")
+      sh("${GCLOUD_PATH}/gcloud docker -- push ${imageTag}")
 	 //}	 	
 	}
    }
