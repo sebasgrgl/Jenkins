@@ -24,8 +24,8 @@ node{
   	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud1',variable:'Gcloud1']]) {
       sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud1}")
      // sh("${GCLOUD_PATH}/gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io")
-      sh("${GCLOUD_PATH}/gcloud config set project my-project")
-      sh("${GCLOUD_PATH}/gcloud docker -- push ${imageTag}")
+     //sh("${GCLOUD_PATH}/gcloud config set project my-project")
+      sh("docker push ${imageTag}")
 	 //}	 	
 	}
    }
