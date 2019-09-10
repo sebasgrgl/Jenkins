@@ -25,7 +25,7 @@ node{
       sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud1}")
      // sh("${GCLOUD_PATH}/gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io")
      //sh("${GCLOUD_PATH}/gcloud config set project my-project")
-      sh('docker-credential-gcr configure-docker')
+     // sh('docker-credential-gcr configure-docker')
       sh("docker push ${imageTag}")
 	 //}	 	
 	}
