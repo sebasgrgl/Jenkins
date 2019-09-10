@@ -21,7 +21,7 @@ node{
   stage('Push image to registry') {
   	 withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']) {
   	 //withCredentials([file(credentialsId: 'Gcloud', variable: 'Gcloud')]) {
-  	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud',variable:'Gcloud']]) {
+  	 withCredentials([[$class: 'FileBinding', credentialsId:'Gcloud1',variable:'Gcloud1']]) {
       sh ("${GCLOUD_PATH}/gcloud auth activate-service-account --key-file ${Gcloud}")
       sh("${GCLOUD_PATH}/gcloud auth print-access-token | docker login -u oauth2accesstoken --password-stdin https://gcr.io")
       sh("${GCLOUD_PATH}/gcloud docker -- push ${imageTag}")
