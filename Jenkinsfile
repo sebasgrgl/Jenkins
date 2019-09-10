@@ -1,6 +1,6 @@
 node{
 //Define all variables
-  def project = 'my-project'
+  def project = 'enduring-trees-252506'
   def appName = 'my-first-microservice'
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
