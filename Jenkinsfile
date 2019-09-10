@@ -38,6 +38,8 @@ node{
               //Roll out to Dev Environment
               case "development":
                    // Create namespace if it doesn't exist
+                   withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']){
+                   sh("${GCLOUD_PATH}/gcloud container clusters get-credentials your-first-cluster-1 --zone us-central1-a --project eighth-service-250517")
                    sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
            //Update the imagetag to the latest version
                    sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
@@ -47,7 +49,7 @@ node{
            //Grab the external Ip address of the service
                    sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
                    break
-           
+           }
         //Roll out to Dev Environment
               case "production":
                    // Create namespace if it doesn't exist
