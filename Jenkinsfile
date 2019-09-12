@@ -1,7 +1,7 @@
 node{
 //Define all variables
   def project = 'eighth-service-250517'
-  def appName = 'my-first-microservice'
+  def appName = 'recruitment-as-a-service'
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
   def namespace = 'development'
