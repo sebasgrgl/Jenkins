@@ -49,9 +49,10 @@ node{
                    sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
            //Grab the external Ip address of the service
                    sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
+                   }
                    break
          
-           }
+           
         //Roll out to Dev Environment
               case "production":
                    // Create namespace if it doesn't exist
