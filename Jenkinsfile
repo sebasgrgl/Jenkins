@@ -5,7 +5,7 @@ node{
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
   def namespace = 'development'
-  def feSvcName = "recruitment-as-a-service"
+  def feSvcName = "recruitment-service"
   def imageTag = "gcr.io/${project}/${appName}:${imageVersion}.${env.BUILD_NUMBER}"
   
   //Checkout Code from Git
@@ -37,7 +37,7 @@ node{
   stage('Deploy Application') {
        switch (namespace) {
               //Roll out to Dev Environment
-              case "development":
+              case "development":      
                    // Create namespace if it doesn't exist
                    withEnv(['GCLOUD_PATH=/home/bontsrik/google-cloud-sdk/bin']){
                    sh("${GCLOUD_PATH}/gcloud container clusters get-credentials your-first-cluster-1 --zone us-central1-a --project eighth-service-250517")
@@ -45,7 +45,7 @@ node{
            //Update the imagetag to the latest version
                    sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
                    //Create or update resources
-           sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
+           		   sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
                    sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
            //Grab the external Ip address of the service
                    sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
