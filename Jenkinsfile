@@ -44,7 +44,7 @@ node{
            //        sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
            //Update the imagetag to the latest version
           //         sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
-                   sh("${GCLOUD_PATH}/gcloud container clusters create recruitment-as-a-service-cluster --num-nodes 2 --machine-type n1-standard-1 --zone us-central1-c")
+                   sh("${GCLOUD_PATH}/gcloud container clusters create recruitment-as-a-service-cluster --num-nodes 2 --machine-type n1-standard-1 --zone us-central1-c --project=eighth-service-250517")
                    //Create or update resources
            		   //sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
                    //sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
