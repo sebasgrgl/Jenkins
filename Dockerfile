@@ -13,8 +13,9 @@ ADD src /code/src
 #Setting the Environment variable
 ENV JAVA_HOME /usr/lib/jvm/java-1.8-openjdk/
 RUN export JAVA_HOME
+RUN export PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 #Build the code
-RUN ["mvn", "clean"]
+RUN ["mvn", "clean"]	
 RUN ["mvn", "package","-X"]
 #Optional you can include commands to run test cases.
 #Port the container listens on
