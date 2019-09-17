@@ -50,10 +50,10 @@ node{
                    //sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
            //Grab the external Ip address of the service
                    //sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
-                   }
+                   
            //Deploy the application on to the kubernetes engine
                    sh("kubectl run recruitment-as-a-service --image=gcr.io/eighth-service-250517/recruitment-as-a-service --port=8080")
-                   }
+                   
            //Open the engine to allow external traffic
                    sh("kubectl expose deployment recruitment-as-a-service --type=LoadBalancer")
 
