@@ -21,4 +21,4 @@ RUN ["mvn", "package","-X"]
 #Port the container listens on
 EXPOSE 8080
 #CMD to be executed when docker is run.
-#ENTRYPOINT ["java","-jar","target/recruitment-service-0.0.1.jar"]
+ENTRYPOINT ["java","-jar","target/hello-world.jar"]

@@ -1,11 +1,11 @@
 node{
 //Define all variables
   def project = 'eighth-service-250517'
-  def appName = 'recruitment-as-a-service'
+  def appName = 'hello-world'
   def serviceName = "${appName}-backend"  
   def imageVersion = 'development'
   def namespace = 'development'
-  def feSvcName = 'recruitment-as-a-service'
+  def feSvcName = 'hello-world'
   def imageTag = "gcr.io/${project}/${appName}:${imageVersion}.${env.BUILD_NUMBER}"
   
   //Checkout Code from Git
@@ -44,18 +44,18 @@ node{
            //        sh("kubectl get ns ${namespace} || kubectl create ns ${namespace}")
            //Update the imagetag to the latest version
           //         sh("sed -i.bak 's#gcr.io/${project}/${appName}:${imageVersion}#${imageTag}#' ./k8s/development/*.yaml")
-                   sh("${GCLOUD_PATH}/gcloud container clusters create recruitment-as-a-service-cluster --num-nodes 2 --machine-type n1-standard-1 --zone us-central1-c --project=eighth-service-250517")
+                   sh("${GCLOUD_PATH}/gcloud container clusters create hello-world-cluster --num-nodes 1 --machine-type n1-standard-1 --zone us-central1-c --project=eighth-service-250517")
                    //Create or update resources
            		   //sh("kubectl --namespace=${namespace} apply -f k8s/development/deployment.yaml")
                    //sh("kubectl --namespace=${namespace} apply -f k8s/development/service.yaml")
            //Grab the external Ip address of the service
                    //sh("echo http://`kubectl --namespace=${namespace} get service/${feSvcName} --output=json | jq -r '.status.loadBalancer.ingress[0].ip'` > ${feSvcName}")
-                   sh("${GCLOUD_PATH}/gcloud container clusters get-credentials recruitment-as-a-service-cluster --zone us-central1-c --project eighth-service-250517")
+                   sh("${GCLOUD_PATH}/gcloud container clusters get-credentials hello-world-cluster --zone us-central1-c --project eighth-service-250517")
            //Deploy the application on to the kubernetes engine
-                   sh("kubectl run recruitment-as-a-service --image=gcr.io/eighth-service-250517/recruitment-as-a-service --port=8080")
+                   sh("kubectl run hello-world --image=${imageTag} --port=8080")
                    
            //Open the engine to allow external traffic
-                   sh("kubectl expose deployment recruitment-as-a-service --type=LoadBalancer")
+                   sh("kubectl expose deployment hello-world --type=LoadBalancer")
 
                    sh("kubectl get services")
                    sh("sleep 20")
