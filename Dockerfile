@@ -16,9 +16,10 @@ RUN export JAVA_HOME
 RUN export PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 #Build the code
 RUN ["mvn", "clean"]	
-RUN ["mvn", "package","-X"]
+RUN ["mvn", "package"]
 #Optional you can include commands to run test cases.
 #Port the container listens on
 EXPOSE 8080
+ADD gs-spring-boot-0.1.0.jar
 #CMD to be executed when docker is run.
-ENTRYPOINT ["java","-jar","target/hello-world.jar"]
+ENTRYPOINT ["java","-jar","target/gs-spring-boot-0.1.0.jar"]
