@@ -20,6 +20,7 @@ RUN ["mvn", "package"]
 #Optional you can include commands to run test cases.
 #Port the container listens on
 EXPOSE 8080
-ADD gs-spring-boot-0.1.0.jar
+ARG JAR_FILE=target/gs-spring-boot-0.1.0.jar
+ADD ${JAR_FILE} gs-spring-boot-0.1.0.jar
 #CMD to be executed when docker is run.
 ENTRYPOINT ["java","-jar","target/gs-spring-boot-0.1.0.jar"]
