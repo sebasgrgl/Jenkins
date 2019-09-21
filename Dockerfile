@@ -17,10 +17,11 @@ RUN export PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 #Build the code
 RUN ["mvn", "clean"]	
 RUN ["mvn", "package"]
+RUN[""]
 #Optional you can include commands to run test cases.
 #Port the container listens on
 EXPOSE 8080
-ARG JAR_FILE=target/gs-spring-boot-0.1.0.jar
-ADD ${JAR_FILE} gs-spring-boot-0.1.0.jar
+#ARG JAR_FILE=target/gs-spring-boot-0.1.0.jar
+#ADD ${JAR_FILE} gs-spring-boot-0.1.0.jar
 #CMD to be executed when docker is run.
 ENTRYPOINT ["java","-jar","target/gs-spring-boot-0.1.0.jar"]
