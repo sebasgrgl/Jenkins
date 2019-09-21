@@ -17,7 +17,6 @@ RUN export PATH=$PATH:/usr/lib/jvm/java-1.8-openjdk/bin
 #Build the code
 RUN ["mvn", "clean"]	
 RUN ["mvn", "package"]
-RUN[""]
 #Optional you can include commands to run test cases.
 #Port the container listens on
 EXPOSE 8080
